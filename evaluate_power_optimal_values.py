@@ -73,9 +73,9 @@ def analyze_sentences(sentences):
         value = int(ner_analysis['values'][0])
         direction_label = dir_analysis['direction_label']
 
-        if direction_label == 'Higher': direction_num = -1
+        if direction_label == 'Higher': direction_num = 1
         if direction_label == 'Default': direction_num = 0
-        if direction_label == 'Lower': direction_num = 1 
+        if direction_label == 'Lower': direction_num = -1 
 
         # Determine the goal weight
         gp_prob = gp_analysis['gp_probs'][0]
@@ -114,16 +114,12 @@ if __name__ == '__main__':
     verbose = True
 
     # Load in the lstm sentiment text classifier
-    sent_model = torch.load(TC_MODEL_PATH)
-    dir_model = torch.load(DC_MODEL_PATH)
-    ner_model = torch.load(NER_MODEL_PATH)
-    direction_model = torch.load(DIR_MODEL_PATH)
-
-    # Check GPU Accesibility
-    if torch.cuda.is_available(): device = "cuda"
-    else: device = "cpu"
+    sent_model = torch.load(TC_MODEL_PATH, map_location=device)
+    dir_model = torch.load(DC_MODEL_PATH, map_location=device)
+    ner_model = torch.load(NER_MODEL_PATH, map_location=device)
+    direction_model = torch.load(DIR_MODEL_PATH, map_location=device)
    
-     # Create a series of test sentences
+    # Create a series of test sentences
     test_sentences = [
        "The peak transmission power must be less than 1000 watts.",
        "The peak transmission power should be less than 500 watts."

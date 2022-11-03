@@ -97,11 +97,11 @@ def analyze_cost(performance_metric, goal_values, direction_values, weights, r_v
         cost += weights[i] * sigma_value
     
     # Determine the SADP value
-    if checkArrayValues(direction_values, 1) == True:
+    if checkArrayValues(direction_values, -1) == True:
         y_value = compute_y( direction_label = 'Lower', goal_values = goal_values )
         h_value = compute_h( direction_label = 'Lower',  metric = performance_metric, y = y_value )
 
-    elif checkArrayValues(direction_values, -1) == True:
+    elif checkArrayValues(direction_values, 1) == True:
         y_value = compute_y( direction_label = 'Higher', goal_values = goal_values )
         h_value = compute_h( direction_label = 'Higher',  metric = performance_metric, y = y_value )
 

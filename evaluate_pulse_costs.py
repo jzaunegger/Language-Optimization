@@ -45,9 +45,9 @@ def analyze_sentences(sentences):
         value = int(ner_analysis['values'][0])
         direction_label = dir_analysis['direction_label']
 
-        if direction_label == 'Higher': direction_num = -1
+        if direction_label == 'Higher': direction_num = 1
         if direction_label == 'Default': direction_num = 0
-        if direction_label == 'Lower': direction_num = 1 
+        if direction_label == 'Lower': direction_num = -1 
 
         # Determine the goal weight
         gp_prob = gp_analysis['gp_probs'][0]
@@ -66,7 +66,11 @@ def analyze_sentences(sentences):
 
 # Run the main body of the script
 if __name__ == '__main__':
-
+    # Check GPU Accesibility
+    if torch.cuda.is_available(): device = "cuda"
+    else: device = "cpu"
+    print('Using Device: {}'.format(device))
+    
     # Define program paths
     DATA_ROOT = './data'
     TOKEN_DATA_PATH = os.path.join(DATA_ROOT, 'system', 'CombinedTokenData.pickle')
@@ -86,15 +90,11 @@ if __name__ == '__main__':
     verbose = True
 
     # Load in the lstm sentiment text classifier
-    sent_model = torch.load(TC_MODEL_PATH)
-    dir_model = torch.load(DC_MODEL_PATH)
-    ner_model = torch.load(NER_MODEL_PATH)
-    direction_model = torch.load(DIR_MODEL_PATH)
+    sent_model = torch.load(TC_MODEL_PATH, map_location=device)
+    dir_model = torch.load(DC_MODEL_PATH, map_location=device)
+    ner_model = torch.load(NER_MODEL_PATH, map_location=device)
+    direction_model = torch.load(DIR_MODEL_PATH, map_location=device)
 
-    # Check GPU Accesibility
-    if torch.cuda.is_available(): device = "cuda"
-    else: device = "cpu"
-   
      # Create a series of test sentences
     test_sentences = [
         "The number of pulses should be greater than 50.",
@@ -132,3 +132,5 @@ if __name__ == '__main__':
         plt.title('Cost for # of Pulses when r={}'.format(r))
         plt.savefig(os.path.join(output_path, 'Pulse-Cost-R-{}.png'.format(r)))
         plt.close()
+
+    print('Evaluated Pulse Costs')

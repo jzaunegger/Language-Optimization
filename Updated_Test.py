@@ -136,7 +136,7 @@ def compute_cost(x, *args):
             
             total_cost += current_cost
 
-    return total_cost
+    return -total_cost
 
 
     ## Loop through the linguistic constraints
@@ -201,6 +201,11 @@ def plot_stats(time_region, ba_stats, np_stats, pp_stats, sn_stats, region_name,
 #################################################################
 if __name__ == '__main__':
 
+    # Check GPU Accesibility
+    if torch.cuda.is_available(): device = "cuda"
+    else: device = "cpu"
+    print('Using Device: {}'.format(device))
+
     # Define program paths
     DATA_ROOT = './data'
     TOKEN_DATA_PATH = os.path.join(DATA_ROOT, 'system', 'CombinedTokenData.pickle')
@@ -220,16 +225,12 @@ if __name__ == '__main__':
     verbose = False
 
     # Load in the lstm sentiment text classifier
-    sent_model = torch.load(TC_MODEL_PATH)
-    dir_model = torch.load(DC_MODEL_PATH)
-    ner_model = torch.load(NER_MODEL_PATH)
-    direction_model = torch.load(DIR_MODEL_PATH)
+    sent_model = torch.load(TC_MODEL_PATH, map_location=device)
+    dir_model = torch.load(DC_MODEL_PATH, map_location=device)
+    ner_model = torch.load(NER_MODEL_PATH, map_location=device)
+    direction_model = torch.load(DIR_MODEL_PATH, map_location=device)
 
-    # Check GPU Accesibility
-    if torch.cuda.is_available(): device = "cuda"
-    else: device = "cpu"
-
-     # Create a series of test sentences
+    # Create a series of test sentences
     test_sentences = [
         "The bandwidth must be less than 1000000 hertz.",
         "The bandwidth should be less than 800000 hertz.",
