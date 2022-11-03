@@ -1,0 +1,102 @@
+{
+    "clay_dry": {
+        "conductivity": [1, 100],
+        "permittivity": [2, 20]
+    },
+    "clay_wet": {
+        "conductivity": [100, 1000],
+        "permittivity": [15, 40]
+    },
+    "concrete_dry": {
+        "conductivity": [1, 10],
+        "permittivity": [4, 10]
+    },
+    "concrete_wet": {
+        "conductivity": [10, 100],
+        "permittivity": [10, 20]
+    },
+    "freshwater": {
+        "conductivity": [0.1, 10],
+        "permittivity": [18, 88]
+    },
+    "freshwater_ice": {
+        "conductivity": [1, 0.000001],
+        "permittivity": [3, 3]
+    },
+    "seawater": {
+        "conductivity": [4000, 4000],
+        "permittivity": [81, 88]
+    },
+    "seawater_ice": {
+        "conductivity": [10, 100],
+        "permittivity": [4, 8]
+    },
+    "permafrost": {
+        "conductivity": [0.1, 10],
+        "permittivity": [2, 8]
+    },
+    "granite_dry": {
+        "conductivity": [0.001, 0.00001],
+        "permittivity": [5, 8]
+    },
+    "granite_wet": {
+        "conductivity": [1, 10],
+        "permittivity": [5, 15]
+    },
+    "limestone_dry": {
+        "conductivity": [0.001, 0.0000001],
+        "permittivity": [4, 8]
+    },
+    "limestone_wet": {
+        "conductivity": [10, 100],
+        "permittivity": [6, 15]
+    },
+    "sandstone_dry": {
+        "conductivity": [0.001, 0.0000001],
+        "permittivity": [4, 7]
+    },
+    "sandstone_wet": {
+        "conductivity": [0.01, 0.001],
+        "permittivity": [5, 15]
+    },
+    "shale_wet": {
+        "conductivity": [10, 100],
+        "permittivity": [6, 9]
+    },
+    "sand_dry": {
+        "conductivity": [0.0001, 1],
+        "permittivity": [3, 6]
+    },
+    "sand_wet": {
+        "conductivity": [0.1, 10],
+        "permittivity": [10, 30]
+    },
+    "sand_costal_dry": {
+        "conductivity": [0.01, 1],
+        "permittivity": [5, 10]
+    },
+    "soil_sandy_dry": {
+        "conductivity": [0.1, 100],
+        "permittivity": [4, 6]
+    },
+    "soil_sandy_wet": {
+        "conductivity": [10, 100],
+        "permittivity": [15, 30]
+    },
+    "soil_loamy_dry": {
+        "conductivity": [0.1, 1],
+        "permittivity": [4, 6]
+    },
+    "soil_loamy_wet": {
+        "conductivity": [10, 100],
+        "permittivity": [10, 20]
+    },
+    "soil_clayey_dry": {
+        "conductivity": [0.1, 100],
+        "permittivity": [4, 6]
+    },
+    "soil_clayey_wet": {
+        "conductivity": [100, 1000],
+        "permittivity": [10, 15]
+    }
+}
