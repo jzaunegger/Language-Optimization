@@ -136,7 +136,7 @@ def compute_cost(x, *args):
             
             total_cost += current_cost
 
-    return -total_cost
+    return total_cost
 
 
     ## Loop through the linguistic constraints
@@ -244,9 +244,9 @@ if __name__ == '__main__':
     language_data = analyze_sentences(test_sentences)
 
     language_data['snr'] = {
-        'values' : [20, 40],
+        'values' : [50, 70],
         'direction_label' :['Higher', 'Higher'],
-        'direction_num' : [-1, -1],
+        'direction_num' : [1, 1],
         'goal_weights' : [100, 1]
     }
 
